@@ -225,6 +225,11 @@ unlayer.registerTool({
   },
   transformer: (values, source) => {
     const { name, value, data } = source;
+
+    console.log('name: ', name)
+    console.log('value: ', value)
+    console.log('values: ', values)
+
     // Transform the values here
     // We will update selected values in property editor here
     let newValues = name === 'productLibrary' ? {
@@ -238,6 +243,8 @@ unlayer.registerTool({
     } : {
       ...values
     };
+
+    console.log('newValues: ', newValues)
 
     // Return updated values
     return newValues;
