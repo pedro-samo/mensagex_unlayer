@@ -1,17 +1,17 @@
 const products = [
   {
     id: 1231,
-    title: "Xícara",
-    price: 50.3,
-    description: "lalalal0",
-    image: "https://www.alpha-mos.com/sites/default/files/alphamos/images/sensory-analysis-coffee-tea.jpg",
+    title: "Xiaomi Redmi Note 11",
+    price: 1319.00,
+    description: "Smartphone Xiaomi Redmi Note 11 Dual 128gb 6gb Ram - Graphite Gray/cinza - Global Tela AMOLED Mergulhe em um mundo de maravilhas A tela retroiluminada oferece o que há de mais moderno em brilho, contraste, calibração de cores e resolução",
+    image: "https://m.media-amazon.com/images/I/51e3KdrHuCL._AC_SX679_.jpg",
   },
   {
     id: 1232,
-    title: "Xícara2",
-    price: 50.3,
-    description: "lalalal0",
-    image: "https://www.alpha-mos.com/sites/default/files/alphamos/images/sensory-analysis-coffee-tea.jpg",
+    title: "Apple iPhone 13 Pro",
+    price: 9156.07,
+    description: "Tela Super Retina XDR de 6,1 polegadas com ProMotion para uma sensação mais rápida e responsiva",
+    image: "https://m.media-amazon.com/images/I/51y+xXlXPrL._AC_SX679_.jpg",
   },
 ];
 
@@ -36,6 +36,10 @@ unlayer.init({
       },
     },
   },
-  customCSS: ["https://raw.githubusercontent.com/pedro-samo/mensagex_unlayer/master/productTool.css?token=GHSAT0AAAAAABVJTBTLNVDJQMXBBPNI6T2CYU5AIEA"],
-  customJS: ["https://raw.githubusercontent.com/pedro-samo/mensagex_unlayer/master/productTool.js?token=GHSAT0AAAAAABVJTBTLWKWFK3WSGYIW4X7GYU5AINA"],
+  customCSS: [
+    'https://examples.unlayer.com/examples/product-library-tool/productTool.css',
+  ],
+  customJS: [
+    'https://examples.unlayer.com/examples/product-library-tool/productTool.js',
+  ],
 });
