@@ -18,7 +18,7 @@ const products = [
 unlayer.init({
   id: "editor",
   projectId: 82737,
-  templateId: "180490",
+  templateId: "[180490]",
   displayMode: "email",
   tools: {
     "custom#product_tool": {
@@ -36,6 +36,6 @@ unlayer.init({
       },
     },
   },
-  customCSS: ["http://127.0.0.1:5500/productTool.css"],
-  customJS: ["http://127.0.0.1:5500/productTool.js"],
+  customCSS: ["https://raw.githubusercontent.com/pedro-samo/mensagex_unlayer/master/productTool.css?token=GHSAT0AAAAAABVJTBTLNVDJQMXBBPNI6T2CYU5AIEA"],
+  customJS: ["https://raw.githubusercontent.com/pedro-samo/mensagex_unlayer/master/productTool.js?token=GHSAT0AAAAAABVJTBTLWKWFK3WSGYIW4X7GYU5AINA"],
 });
