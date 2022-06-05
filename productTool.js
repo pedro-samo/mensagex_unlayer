@@ -1,3 +1,5 @@
+console.log('CHAMOU')
+
 var editorTemplate = '<button id="addProduct" class="button">Add Product</button>';
 
 var productItemsTemplate = _.template(`
@@ -225,10 +227,6 @@ unlayer.registerTool({
   },
   transformer: (values, source) => {
     const { name, value, data } = source;
-
-    console.log('name: ', name)
-    console.log('value: ', value)
-    console.log('values: ', values)
 
     // Transform the values here
     // We will update selected values in property editor here
