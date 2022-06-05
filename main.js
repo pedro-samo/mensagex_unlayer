@@ -18,7 +18,7 @@ const products = [
 unlayer.init({
   id: "editor",
   projectId: 82737,
-  templateId: "[180490]",
+  templateId: "180490",
   displayMode: "email",
   tools: {
     "custom#product_tool": {
