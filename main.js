@@ -18,7 +18,7 @@ const products = [
 unlayer.init({
   id: "editor",
   projectId: 82737,
-  templateId: "180490",
+  templateId: "180892",
   displayMode: "email",
   tools: {
     "custom#product_tool": {
@@ -37,9 +37,9 @@ unlayer.init({
     },
   },
   customCSS: [
-    'https://examples.unlayer.com/examples/product-library-tool/productTool.css',
+    'http://127.0.0.1:5500/productTool.css',
   ],
   customJS: [
-    'https://examples.unlayer.com/examples/product-library-tool/productTool.js',
+    'http://127.0.0.1:5500/productTool.js',
   ],
 });
