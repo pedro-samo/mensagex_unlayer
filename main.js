@@ -37,9 +37,9 @@ unlayer.init({
     },
   },
   customCSS: [
-    'http://127.0.0.1:5500/productTool.css',
+    'https://pedro-samo.github.io/productTool.css',
   ],
   customJS: [
-    'http://127.0.0.1:5500/productTool.js',
+    'https://pedro-samo.github.io/productTool.js',
   ],
 });
