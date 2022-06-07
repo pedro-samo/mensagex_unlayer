@@ -15,6 +15,11 @@ const products = [
   },
 ];
 
+const isProduction = () => {
+  const url = window.location.href;
+  return url.includes('127.0.0.1') ? false : true;
+}
+
 unlayer.init({
   id: "editor",
   projectId: 82737,
@@ -36,10 +41,6 @@ unlayer.init({
       },
     },
   },
-  customCSS: [
-    'https://pedro-samo.github.io/productTool.css',
-  ],
-  customJS: [
-    'https://pedro-samo.github.io/productTool.js',
-  ],
+  customCSS: isProduction() ? 'https://pedro-samo.github.io/productTool.css' : 'http://localhost:5500/productTool.css',
+  customJS: isProduction() ? 'https://pedro-samo.github.io/productTool.js' : 'http://localhost:5500/productTool.js',
 });

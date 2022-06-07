@@ -6,11 +6,11 @@ const toolTemplate = function (values, isViewer = false) {
     }</h3>
     <div class="description">${values.productDescription}</div>
   </div>
-  <div class="product-footer" style="background-color: ${values.productPriceBackgroundColor
-    };">
-    <div style="color: ${values.productPriceColor};">$${values.productPrice
+  <div class="product-footer">
+    <div style="color: ${values.productPriceColor}; background-color: ${values.productPriceBackgroundColor
+    };">R$${values.productPrice
     }</div>
-    <a class="button no-underline no-border-radius" href="${values.productCTAAction.url
+    <a class="button no-underline" href="${values.productCTAAction.url
     }" target="${values.productCTAAction.target}" style="background-color: ${values.productCTAColor
     }; color: ${values.productCTATextColor};">${values.productCTA}</a>
   </div>
@@ -50,13 +50,13 @@ const productItemsTemplate = _.template(`
 <div class="product-item" id="product-item" data-uuid='<%= item.id %>' data-title="<%= item.title %>" data-price="<%= item.price %>" data-image="<%= item.image %>" data-description="<%= item.description %>" >
 <img src="<%= item.image %>" style="max-height: 300px;min-height: 300px;width: 100%;" />
   <h4 style="margin: 0.5rem 0; text-align: left;"><%= item.title %></h4>
-  <h4 style="margin: 0.5rem 0; text-align: left;">$<%= item.price %></h4>
+  <h4 style="margin: 0.5rem 0; text-align: left;">R$<%= item.price %></h4>
   <p style="text-align: left;"><%= item.description %></p>
 </div>
 <% }); %>
 `);
 
-const editorTemplate = `<button id="addProduct" class="button">Add Product</button>`;
+const editorTemplate = `<button id="addProduct" class="button">Adicionar Produto</button>`;
 
 const showModal = function () {
   const modal = document.getElementById('product_library_modal');
@@ -70,21 +70,21 @@ const hideModal = function () {
 
 unlayer.registerTool({
   name: 'product_tool',
-  label: 'Product',
+  label: 'Produto',
   icon: 'fa-tag',
   supportedDisplayModes: ['web', 'email'],
   options: {
     productContent: {
-      title: 'Product Content',
+      title: 'Container do Produto',
       position: 1,
       options: {
         productLibrary: {
-          label: 'Add Product from store',
+          label: 'Adicione Produtos da Loja',
           defaultValue: '',
           widget: 'product_library',
         },
         productImage: {
-          label: 'Product Image',
+          label: 'Imagem do Produto',
           defaultValue: {
             url:
               'https://s3.amazonaws.com/unroll-images-production/projects%2F6553%2F1604576441796-339575',
@@ -92,53 +92,53 @@ unlayer.registerTool({
           widget: 'image',
         },
         productTitle: {
-          label: 'Product Title',
-          defaultValue: 'Product Title',
+          label: 'Título do Produto',
+          defaultValue: 'Título do Produto',
           widget: 'text',
         },
         productTitleColor: {
-          label: 'Product Title Color',
+          label: 'Cor do Título do Produto',
           defaultValue: '#000000',
           widget: 'color_picker',
         },
         productDescription: {
-          label: 'Product Description',
+          label: 'Descrição do Produto',
           defaultValue:
-            'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.',
+            'Aqui vai a descrição do seu produto. Clique no box para editar e deixar do seu jeito.',
           widget: 'rich_text',
         },
         productPrice: {
-          label: 'Product Price',
+          label: 'Preço do Produto',
           defaultValue: '7.99',
           widget: 'text',
         },
         productPriceColor: {
-          label: 'Product Price Color',
+          label: 'Cor do Preço do Produto',
           defaultValue: '#000000',
           widget: 'color_picker',
         },
         productPriceBackgroundColor: {
-          label: 'Product Price Background',
+          label: 'Cor de Fundo Preço do Produto',
           defaultValue: '#ffffff',
           widget: 'color_picker',
         },
         productCTA: {
-          label: 'Button Name',
-          defaultValue: 'Buy Now',
+          label: 'Texto do Botão',
+          defaultValue: 'Compre Já!',
           widget: 'text',
         },
         productCTAColor: {
-          label: 'Button Color',
+          label: 'Cor do Botão',
           defaultValue: '#007bff',
           widget: 'color_picker',
         },
         productCTATextColor: {
-          label: 'Button Text Color',
+          label: 'Texto da Cor do Botão',
           defaultValue: '#ffffff',
           widget: 'color_picker',
         },
         productCTAAction: {
-          label: 'Action Type',
+          label: 'Tipo da Ação',
           defaultValue: {
             name: 'web',
             values: {
@@ -283,8 +283,6 @@ unlayer.registerTool({
   },
 });
 
-
-
 unlayer.registerPropertyEditor({
   name: 'product_library',
   layout: 'bottom',
@@ -353,4 +351,4 @@ unlayer.registerPropertyEditor({
       };
     },
   }),
-});
+}); 
