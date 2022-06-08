@@ -7,12 +7,14 @@ const toolTemplate = function (values, isViewer = false) {
     <div class="description">${values.productDescription}</div>
   </div>
   <div class="product-footer">
-    <div style="color: ${values.productPriceColor}; background-color: ${values.productPriceBackgroundColor
-    };">R$${values.productPrice
-    }</div>
-    <a class="button no-underline" href="${values.productCTAAction.url
-    }" target="${values.productCTAAction.target}" style="background-color: ${values.productCTAColor
-    }; color: ${values.productCTATextColor};">${values.productCTA}</a>
+    <div style="color: ${values.productPriceColor}; background-color: ${values.productPriceBackgroundColor};">
+      ${promocionalPrice(values.produtctOldPrice)}
+      R$ ${values.productPrice.toString().replace('.', ',')}
+    </div>
+    ${freeShipping(values.productFreeShipping)}
+    <a class="button no-underline" href="${values.productCTAAction.url}" target="${values.productCTAAction.target}" style="background-color: ${values.productCTAColor}; color: ${values.productCTATextColor};">
+      ${values.productCTA}
+    </a>
   </div>
 </div>
 ${isViewer ? modalTemplate({ products: values.data.products }) : ''}
@@ -50,13 +52,23 @@ const productItemsTemplate = _.template(`
 <div class="product-item" id="product-item" data-uuid='<%= item.id %>' data-title="<%= item.title %>" data-price="<%= item.price %>" data-image="<%= item.image %>" data-description="<%= item.description %>" >
 <img src="<%= item.image %>" style="max-height: 300px;min-height: 300px;width: 100%;" />
   <h4 style="margin: 0.5rem 0; text-align: left;"><%= item.title %></h4>
-  <h4 style="margin: 0.5rem 0; text-align: left;">R$<%= item.price %></h4>
+  <h4 style="margin: 0.5rem 0; text-align: left;">R$ <%= item.price %></h4>
   <p style="text-align: left;"><%= item.description %></p>
 </div>
 <% }); %>
 `);
 
-const editorTemplate = `<button id="addProduct" class="button">Adicionar Produto</button>`;
+const promocionalPrice = (value) => {
+  if (!value) return `<span></span>`;
+  else return `<span class="product-oldprice"> De: R$ ${value} </span>`;
+};
+
+const freeShipping = (value) => {
+  if (!value) return `<span class="product-freeShipping"></span>`;
+  else return `<span class="product-freeShipping"> Frete Grátis </span>`;
+}
+
+const editorTemplate = `<button id="addProduct" class="button">Pesquisar Produtos</button>`;
 
 const showModal = function () {
   const modal = document.getElementById('product_library_modal');
@@ -124,12 +136,12 @@ unlayer.registerTool({
         },
         productCTA: {
           label: 'Texto do Botão',
-          defaultValue: 'Compre Já!',
+          defaultValue: 'Comprar',
           widget: 'text',
         },
         productCTAColor: {
           label: 'Cor do Botão',
-          defaultValue: '#007bff',
+          defaultValue: '#2DC268',
           widget: 'color_picker',
         },
         productCTATextColor: {
@@ -160,8 +172,10 @@ unlayer.registerTool({
         ? {
           ...values,
           productTitle: value.selected.title,
+          produtctOldPrice: value.selected.oldPrice,
           productPrice: value.selected.price,
           productDescription: value.selected.description,
+          productFreeShipping: value.selected.freeShipping,
           productImage: {
             url: value.selected.image,
           },
@@ -177,6 +191,7 @@ unlayer.registerTool({
   renderer: {
     Viewer: unlayer.createViewer({
       render(values) {
+        console.log('values: ', values)
         return toolTemplate(values, true);
       },
     }),

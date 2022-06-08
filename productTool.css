@@ -156,6 +156,12 @@
     }
 }
 
+.product-oldprice {
+    font-size: 13px;
+    text-decoration: line-through;
+    margin-right: 10px;
+}
+
 .product-card {
     position: relative;
     display: -webkit-box;
@@ -209,7 +215,7 @@
 
 .product-footer > div {
     font-size: 16px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     padding: 5px 10px;
     width: auto !important;
     border-radius: 5px;
@@ -233,6 +239,13 @@
 .products-list {
     display: flex;
     flex-wrap: wrap;
+}
+
+.product-freeShipping {
+    color: #14a020;
+    font-size: 15px;
+    min-height: 23px;
+    margin-bottom: 5px;
 }
 
 .product-item {
