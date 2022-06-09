@@ -27,13 +27,13 @@ const modalTemplate = function (data) {
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h3 class="modal-title">Products Library</h3>
+          <h3 class="modal-title">Biblioteca de Produtos</h3>
           <button class="close" onclick="hideModal()">&times;</button>
         </div>
         <div class="modal-body">
           <div class="search-box">
-            <input type="text" class="form-control" placeholder="Search by name" id="search-bar" style="width: 78%" />
-            <button id="search-btn" class="button" style="width: 20%">Search</button>
+            <input type="text" class="form-control" placeholder="Busque pelo nome" id="search-bar" style="width: 78%" />
+            <button id="search-btn" class="button" style="width: 20%">Buscar</button>
           </div>
           <div class="products-list">
             ${productItemsTemplate(data)}
@@ -69,6 +69,8 @@ const freeShipping = (value) => {
 }
 
 const editorTemplate = `<button id="addProduct" class="button">Pesquisar Produtos</button>`;
+
+const showFreeShipping = `<div>Exibir Frete Grátis</div>`;
 
 const showModal = function () {
   const modal = document.getElementById('product_library_modal');
