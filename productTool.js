@@ -314,6 +314,8 @@ const productList = [
     "id": 1231,
     "title": "Xiaomi Redmi Note 11",
     "price": 1319,
+    "oldPrice": 0,
+    "freeShipping": false,
     "description": "Smartphone Xiaomi Redmi Note 11 Dual 128gb 6gb Ram - Graphite Gray/cinza - Global Tela AMOLED Mergulhe em um mundo de maravilhas A tela retroiluminada oferece o que há de mais moderno em brilho, contraste, calibração de cores e resolução",
     "image": "https://m.media-amazon.com/images/I/51e3KdrHuCL._AC_SX679_.jpg",
     "freeShipping": true
@@ -323,6 +325,7 @@ const productList = [
     "title": "Apple iPhone 13 Pro",
     "price": 9156.07,
     "oldPrice": 10000,
+    "freeShipping": false,
     "description": "Tela Super Retina XDR de 6,1 polegadas com ProMotion para uma sensação mais rápida e responsiva",
     "image": "https://m.media-amazon.com/images/I/51y+xXlXPrL._AC_SX679_.jpg"
   },
@@ -339,6 +342,7 @@ const productList = [
     "id": 1234,
     "title": "Echo Dot (4ª Geração)",
     "price": 265.05,
+    "oldPrice": 0,
     "freeShipping": true,
     "description": "Conheça o Echo Dot (4ª Geração): nosso smart speaker com Alexa de maior sucesso ainda melhor.",
     "image": "https://m.media-amazon.com/images/I/714Rq4k05UL._AC_SX679_.jpg"
