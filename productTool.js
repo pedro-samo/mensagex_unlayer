@@ -126,6 +126,11 @@ unlayer.registerTool({
           defaultValue: '7.99',
           widget: 'text',
         },
+        produtctOldPrice: {
+          label: 'Preço Sem Desconto',
+          defaultValue: '12.00',
+          widget: 'text',
+        },
         productPriceColor: {
           label: 'Cor do Preço do Produto',
           defaultValue: '#000000',
@@ -135,6 +140,11 @@ unlayer.registerTool({
           label: 'Cor de Fundo Preço do Produto',
           defaultValue: '#ffffff',
           widget: 'color_picker',
+        },
+        productFreeShipping: {
+          label: 'Fréte Grátis',
+          defaultValue: 'Frete Grátis',
+          widget: 'text',
         },
         productCTA: {
           label: 'Texto do Botão',
@@ -193,7 +203,6 @@ unlayer.registerTool({
   renderer: {
     Viewer: unlayer.createViewer({
       render(values) {
-        console.log('values: ', values)
         return toolTemplate(values, true);
       },
     }),
