@@ -143,7 +143,7 @@ unlayer.registerTool({
         },
         productFreeShipping: {
           label: 'Fréte Grátis',
-          defaultValue: 'Frete Grátis',
+          defaultValue: false,
           widget: 'toggle',
         },
         productCTA: {
