@@ -144,7 +144,7 @@ unlayer.registerTool({
         productFreeShipping: {
           label: 'Fréte Grátis',
           defaultValue: 'Frete Grátis',
-          widget: 'text',
+          widget: 'toggle',
         },
         productCTA: {
           label: 'Texto do Botão',
