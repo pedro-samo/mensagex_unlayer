@@ -309,6 +309,42 @@ unlayer.registerTool({
   },
 });
 
+const productList = [
+  {
+    "id": 1231,
+    "title": "Xiaomi Redmi Note 11",
+    "price": 1319,
+    "description": "Smartphone Xiaomi Redmi Note 11 Dual 128gb 6gb Ram - Graphite Gray/cinza - Global Tela AMOLED Mergulhe em um mundo de maravilhas A tela retroiluminada oferece o que há de mais moderno em brilho, contraste, calibração de cores e resolução",
+    "image": "https://m.media-amazon.com/images/I/51e3KdrHuCL._AC_SX679_.jpg",
+    "freeShipping": true
+  },
+  {
+    "id": 1232,
+    "title": "Apple iPhone 13 Pro",
+    "price": 9156.07,
+    "oldPrice": 10000,
+    "description": "Tela Super Retina XDR de 6,1 polegadas com ProMotion para uma sensação mais rápida e responsiva",
+    "image": "https://m.media-amazon.com/images/I/51y+xXlXPrL._AC_SX679_.jpg"
+  },
+  {
+    "id": 1233,
+    "title": "Kindle 10a. geração",
+    "price": 426.55,
+    "oldPrice": 600,
+    "freeShipping": true,
+    "description": "Conheça o novo Kindle, agora com iluminação embutida ajustável, que permite que você leia em ambientes abertos ou fechados, a qualquer hora do dia. O Kindle possui uma tela sensível ao toque antirreflexo, até mesmo sob o sol. É como se você estivesse lendo em papel.",
+    "image": "https://m.media-amazon.com/images/I/61X0ISBpD-L._AC_SX679_.jpg"
+  },
+  {
+    "id": 1234,
+    "title": "Echo Dot (4ª Geração)",
+    "price": 265.05,
+    "freeShipping": true,
+    "description": "Conheça o Echo Dot (4ª Geração): nosso smart speaker com Alexa de maior sucesso ainda melhor.",
+    "image": "https://m.media-amazon.com/images/I/714Rq4k05UL._AC_SX679_.jpg"
+  }
+]
+
 unlayer.registerPropertyEditor({
   name: 'product_library',
   layout: 'bottom',
@@ -328,7 +364,7 @@ unlayer.registerPropertyEditor({
             if (e.target.id === 'product-item') {
               // If user clicks on product item
               // Find selected item from products list
-              const selectedProduct = data.products.find(
+              const selectedProduct = productList.find(
                 (item) => item.id === parseInt(e.target.dataset.uuid)
               );
               updateValue({ selected: selectedProduct });
@@ -336,7 +372,7 @@ unlayer.registerPropertyEditor({
               // If user click on child of product item (e.g. title, price, image or desctiption)
               const parent = e.target.parentElement;
               if (parent && parent.id !== 'product-item') return;
-              const selectedProduct = data.products.find(
+              const selectedProduct = productList.find(
                 (item) => item.id === parseInt(parent.dataset.uuid)
               );
               updateValue({ selected: selectedProduct });
@@ -355,13 +391,13 @@ unlayer.registerPropertyEditor({
             );
             let filteredItem;
             let productsListHtml;
-            if (list && data && data.products) {
+            if (list && productList) {
               if (searchBar.value === '') {
                 productsListHtml = productItemsTemplate({
-                  products: data.products,
+                  products: productList,
                 });
               } else {
-                filteredItem = data.products.filter((item) =>
+                filteredItem = productList.filter((item) =>
                   item.title
                     .toLowerCase()
                     .includes(searchBar.value.toLowerCase())
