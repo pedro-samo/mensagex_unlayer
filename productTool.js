@@ -315,9 +315,18 @@ unlayer.registerTool({
   },
 });
 
+
 const getProduct = async (title) => {
+
+  const isProduction = () => {
+    const url = window.location.href;
+    return url.includes('localhost') ? false : true;
+  }
+
+  const url = isProduction() ? 'https://mensagex.com.br/s/ecomm/products/search?title=' : 'http://localhost/s/ecomm/products/search?title='
+
   if (!title) return;
-  const response = await fetch(`https://mensagex.com.br/s/ecomm/products/search?title=${title}`);
+  const response = await fetch(url + title);
   const data = await response.json();
   return showApiResponse(data);
 }
