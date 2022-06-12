@@ -315,49 +315,26 @@ unlayer.registerTool({
   },
 });
 
-const productList = [
-  {
-    "id": 1231,
-    "title": "Xiaomi Redmi Note 11",
-    "price": 1319,
-    "oldPrice": 0,
-    "freeShipping": false,
-    "description": "Smartphone Xiaomi Redmi Note 11 Dual 128gb 6gb Ram - Graphite Gray/cinza - Global Tela AMOLED Mergulhe em um mundo de maravilhas A tela retroiluminada oferece o que há de mais moderno em brilho, contraste, calibração de cores e resolução",
-    "image": "https://m.media-amazon.com/images/I/51e3KdrHuCL._AC_SX679_.jpg",
-    "freeShipping": true,
-    "url": "https://m.media-amazon.com/images/I/51e3KdrHuCL._AC_SX679_.jpg"
-  },
-  {
-    "id": 1232,
-    "title": "Apple iPhone 13 Pro",
-    "price": 9156.07,
-    "oldPrice": 10000,
-    "freeShipping": false,
-    "description": "Tela Super Retina XDR de 6,1 polegadas com ProMotion para uma sensação mais rápida e responsiva",
-    "image": "https://m.media-amazon.com/images/I/51y+xXlXPrL._AC_SX679_.jpg",
-    "url": "https://m.media-amazon.com/images/I/51y+xXlXPrL._AC_SX679_.jpg"
-  },
-  {
-    "id": 1233,
-    "title": "Kindle 10a. geração",
-    "price": 426.55,
-    "oldPrice": 600,
-    "freeShipping": true,
-    "description": "Conheça o novo Kindle, agora com iluminação embutida ajustável, que permite que você leia em ambientes abertos ou fechados, a qualquer hora do dia. O Kindle possui uma tela sensível ao toque antirreflexo, até mesmo sob o sol. É como se você estivesse lendo em papel.",
-    "image": "https://m.media-amazon.com/images/I/61X0ISBpD-L._AC_SX679_.jpg",
-    "url": "https://m.media-amazon.com/images/I/61X0ISBpD-L._AC_SX679_.jpg",
-  },
-  {
-    "id": 1234,
-    "title": "Echo Dot (4ª Geração)",
-    "price": 265.05,
-    "oldPrice": 0,
-    "freeShipping": true,
-    "description": "Conheça o Echo Dot (4ª Geração): nosso smart speaker com Alexa de maior sucesso ainda melhor.",
-    "image": "https://m.media-amazon.com/images/I/714Rq4k05UL._AC_SX679_.jpg",
-    "url": "https://m.media-amazon.com/images/I/714Rq4k05UL._AC_SX679_.jpg",
+const getProduct = async (title) => {
+  if (!title) return;
+  const response = await fetch(`https://mensagex.com.br/s/ecomm/products/search?title=${title}`);
+  const data = await response.json();
+  return showApiResponse(data);
+}
+
+const showApiResponse = (data) => {
+  const list = document.querySelector(
+    '#product_library_modal .products-list'
+  );
+  let filteredItem = data;
+  let productsListHtml;
+  if (list && data) {
+    productsListHtml = productItemsTemplate({
+      products: filteredItem,
+    });
+    list.innerHTML = productsListHtml;
   }
-]
+}
 
 unlayer.registerPropertyEditor({
   name: 'product_library',
@@ -397,31 +374,10 @@ unlayer.registerPropertyEditor({
             outerBody.click();
           };
           /* Register event listeners for search */
-          var searchBar = document.querySelector('#search-bar');
           var searchButton = document.querySelector('#search-btn');
+          var searchBarValue = document.getElementById('search-bar');
           searchButton.onclick = function (e) {
-            const list = document.querySelector(
-              '#product_library_modal .products-list'
-            );
-            let filteredItem;
-            let productsListHtml;
-            if (list && productList) {
-              if (searchBar.value === '') {
-                productsListHtml = productItemsTemplate({
-                  products: productList,
-                });
-              } else {
-                filteredItem = productList.filter((item) =>
-                  item.title
-                    .toLowerCase()
-                    .includes(searchBar.value.toLowerCase())
-                );
-                productsListHtml = productItemsTemplate({
-                  products: filteredItem,
-                });
-              }
-              list.innerHTML = productsListHtml;
-            }
+            getProduct(searchBarValue.value);
           };
         }, 200);
       };
