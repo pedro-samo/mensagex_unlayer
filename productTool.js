@@ -70,8 +70,6 @@ const freeShipping = (value) => {
 
 const editorTemplate = `<button id="addProduct" class="button">Pesquisar Produtos</button>`;
 
-const showFreeShipping = `<div>Exibir Frete Grátis</div>`;
-
 const showModal = function () {
   const modal = document.getElementById('product_library_modal');
   modal.classList.add('show');
