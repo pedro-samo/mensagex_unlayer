@@ -189,12 +189,20 @@ unlayer.registerTool({
           productImage: {
             url: value.selected.image,
           },
+          productCTAAction: {
+            "name": "web",
+            "values": {
+              "href": value.selected.url,
+              "target": "_blank"
+            }
+          }
         }
         : {
           ...values,
         };
 
     // Return updated values
+    console.log('newValues: ', newValues)
     return newValues;
   },
   values: {},
@@ -316,7 +324,8 @@ const productList = [
     "freeShipping": false,
     "description": "Smartphone Xiaomi Redmi Note 11 Dual 128gb 6gb Ram - Graphite Gray/cinza - Global Tela AMOLED Mergulhe em um mundo de maravilhas A tela retroiluminada oferece o que há de mais moderno em brilho, contraste, calibração de cores e resolução",
     "image": "https://m.media-amazon.com/images/I/51e3KdrHuCL._AC_SX679_.jpg",
-    "freeShipping": true
+    "freeShipping": true,
+    "url": "https://m.media-amazon.com/images/I/51e3KdrHuCL._AC_SX679_.jpg"
   },
   {
     "id": 1232,
@@ -325,7 +334,8 @@ const productList = [
     "oldPrice": 10000,
     "freeShipping": false,
     "description": "Tela Super Retina XDR de 6,1 polegadas com ProMotion para uma sensação mais rápida e responsiva",
-    "image": "https://m.media-amazon.com/images/I/51y+xXlXPrL._AC_SX679_.jpg"
+    "image": "https://m.media-amazon.com/images/I/51y+xXlXPrL._AC_SX679_.jpg",
+    "url": "https://m.media-amazon.com/images/I/51y+xXlXPrL._AC_SX679_.jpg"
   },
   {
     "id": 1233,
@@ -334,7 +344,8 @@ const productList = [
     "oldPrice": 600,
     "freeShipping": true,
     "description": "Conheça o novo Kindle, agora com iluminação embutida ajustável, que permite que você leia em ambientes abertos ou fechados, a qualquer hora do dia. O Kindle possui uma tela sensível ao toque antirreflexo, até mesmo sob o sol. É como se você estivesse lendo em papel.",
-    "image": "https://m.media-amazon.com/images/I/61X0ISBpD-L._AC_SX679_.jpg"
+    "image": "https://m.media-amazon.com/images/I/61X0ISBpD-L._AC_SX679_.jpg",
+    "url": "https://m.media-amazon.com/images/I/61X0ISBpD-L._AC_SX679_.jpg",
   },
   {
     "id": 1234,
@@ -343,7 +354,8 @@ const productList = [
     "oldPrice": 0,
     "freeShipping": true,
     "description": "Conheça o Echo Dot (4ª Geração): nosso smart speaker com Alexa de maior sucesso ainda melhor.",
-    "image": "https://m.media-amazon.com/images/I/714Rq4k05UL._AC_SX679_.jpg"
+    "image": "https://m.media-amazon.com/images/I/714Rq4k05UL._AC_SX679_.jpg",
+    "url": "https://m.media-amazon.com/images/I/714Rq4k05UL._AC_SX679_.jpg",
   }
 ]
 
