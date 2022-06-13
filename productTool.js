@@ -314,24 +314,32 @@ unlayer.registerTool({
   },
 });
 
+let productList = []
 
-
-const getProduct = async (title, userToken) => {
+const getProduct = async (title = 'teste', userToken) => {
   if (!title) return;
   const response = await fetch(`http://localhost/s/ecomm/products/search?title=${title}&token=${userToken}`);
   const data = await response.json();
-  return showApiResponse(data);
+  productList = data;
+  return showApiResponse(productList, title);
 }
 
-const showApiResponse = (data) => {
+const showApiResponse = (productList, title) => {
   const list = document.querySelector(
     '#product_library_modal .products-list'
   );
-  let filteredItem = data;
+
+  if (!productList.length) {
+    const node = document.createElement("span");
+    node.classList.add('not-found')
+    node.innerText = `Nenhum resultado encontrado para ${title}.`;
+    return list.appendChild(node)
+  }
+
   let productsListHtml;
-  if (list && data) {
+  if (list && productList) {
     productsListHtml = productItemsTemplate({
-      products: filteredItem,
+      products: productList,
     });
     list.innerHTML = productsListHtml;
   }

@@ -23,6 +23,14 @@
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+.not-found {
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 30px;
+    font-weight: 600;
+    color: #606060;
+}
+
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
