@@ -32,8 +32,8 @@ const modalTemplate = function (data) {
         </div>
         <div class="modal-body">
           <div class="search-box">
-            <input type="text" class="form-control" placeholder="Busque pelo nome" id="search-bar" style="width: 78%" />
-            <button id="search-btn" class="button" style="width: 20%">Buscar</button>
+            <input type="text" class="form-control" placeholder="Busque pelo nome" id="search-bar" style="width: 75%" />
+            <button id="search-btn" class="button" style="width: 24%">Pesquisar</button>
           </div>
           <div class="products-list">
             ${productItemsTemplate(data)}
@@ -317,7 +317,13 @@ unlayer.registerTool({
 let productList = []
 
 const getProduct = async (title = 'teste', userToken) => {
+
+  const notFoundText = document.querySelector('.not-found');
+  if (notFoundText) notFoundText.remove();
+
   if (!title) return;
+  const searchButton = document.getElementById('search-btn');
+  searchButton.innerText = "Pesquisando..."
   const response = await fetch(`http://localhost/s/ecomm/products/search?title=${title}&token=${userToken}`);
   const data = await response.json();
   productList = data;
@@ -329,8 +335,8 @@ const showApiResponse = (productList, title) => {
     '#product_library_modal .products-list'
   );
 
-  const notFoundText = document.querySelector('.not-found');
-  if (notFoundText) notFoundText.remove();
+  const searchButton = document.getElementById('search-btn');
+  searchButton.innerText = 'Pesquisar';
 
   if (!productList.length) {
     const node = document.createElement("span");
