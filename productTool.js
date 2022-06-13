@@ -329,6 +329,9 @@ const showApiResponse = (productList, title) => {
     '#product_library_modal .products-list'
   );
 
+  const notFoundText = document.querySelector('.not-found');
+  if (notFoundText) notFoundText.remove();
+
   if (!productList.length) {
     const node = document.createElement("span");
     node.classList.add('not-found')
@@ -337,7 +340,8 @@ const showApiResponse = (productList, title) => {
   }
 
   let productsListHtml;
-  if (list && productList) {
+
+  if (list && productList.length > 0) {
     productsListHtml = productItemsTemplate({
       products: productList,
     });
