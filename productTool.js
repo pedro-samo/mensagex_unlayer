@@ -314,30 +314,54 @@ unlayer.registerTool({
   },
 });
 
-let productList = []
+let productList = [];
 
-const getProduct = async (title = 'teste', userToken) => {
+const getProduct = async (title, userToken) => {
 
   const notFoundText = document.querySelector('.not-found');
   if (notFoundText) notFoundText.remove();
 
   if (!title) return;
+
   const searchButton = document.getElementById('search-btn');
-  searchButton.innerText = "Pesquisando..."
-  const response = await fetch(`http://localhost/s/ecomm/products/search?title=${title}&token=${userToken}`);
-  const data = await response.json();
-  productList = data;
-  return showApiResponse(productList, title);
+  searchButton.innerText = "Pesquisando...";
+
+  clearResults();
+
+  try {
+    const response = await fetch(`http://localhost/s/ecomm/products/search?title=${title}&token=${userToken}`);
+    productList = await response.json();
+    return showApiResponse(productList, title);
+  } catch (e) {
+    const list = document.querySelector(
+      '#product_library_modal .products-list'
+    );
+    const node = document.createElement("span");
+    node.classList.add('not-found')
+    node.innerText = `Ops... ocorreu um erro. Tente novamente`;
+    return list.appendChild(node)
+  } finally {
+    const searchButton = document.getElementById('search-btn');
+    searchButton.innerText = "Pesquisar";
+  }
 }
 
-const showApiResponse = (productList, title) => {
+const clearResults = () => {
   const list = document.querySelector(
     '#product_library_modal .products-list'
   );
 
-  const searchButton = document.getElementById('search-btn');
-  searchButton.innerText = 'Pesquisar';
+  let productsListHtml;
 
+  if (list) {
+    productsListHtml = productItemsTemplate({
+      products: [],
+    });
+    list.innerHTML = productsListHtml;
+  }
+}
+
+const showApiResponse = (productList, title) => {
   if (!productList.length) {
     const node = document.createElement("span");
     node.classList.add('not-found')
@@ -398,6 +422,11 @@ unlayer.registerPropertyEditor({
           searchButton.onclick = function (e) {
             getProduct(searchBarValue.value, data.token);
           };
+          searchBarValue.addEventListener('keypress', (e) => {
+            if (e.key === "Enter") {
+              getProduct(searchBarValue.value, data.token);
+            }
+          })
         }, 200);
       };
     },
