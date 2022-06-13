@@ -328,10 +328,16 @@ const getProduct = async (title, userToken) => {
 
   clearResults();
 
+  const removeSpecialCharacters = (title) => {
+    return title.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+  }
+
   try {
-    const response = await fetch(`http://localhost/s/ecomm/products/search?title=${title}&token=${userToken}`);
-    productList = await response.json();
-    return showApiResponse(productList, title);
+    const url = `http://localhost/s/ecomm/products/search?title=${removeSpecialCharacters(title)}&token=${userToken}`
+    const response = await fetch(url);
+    const data = await response.json();
+    productList = data;
+    showApiResponse(data, title);
   } catch (e) {
     const list = document.querySelector(
       '#product_library_modal .products-list'
@@ -339,12 +345,14 @@ const getProduct = async (title, userToken) => {
     const node = document.createElement("span");
     node.classList.add('not-found')
     node.innerText = `Ops... ocorreu um erro. Tente novamente`;
-    return list.appendChild(node)
+    list.appendChild(node)
   } finally {
     const searchButton = document.getElementById('search-btn');
     searchButton.innerText = "Pesquisar";
   }
 }
+
+
 
 const clearResults = () => {
   const list = document.querySelector(
@@ -362,6 +370,10 @@ const clearResults = () => {
 }
 
 const showApiResponse = (productList, title) => {
+  const list = document.querySelector(
+    '#product_library_modal .products-list'
+  );
+
   if (!productList.length) {
     const node = document.createElement("span");
     node.classList.add('not-found')
