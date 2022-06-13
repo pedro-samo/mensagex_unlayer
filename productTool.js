@@ -202,7 +202,6 @@ unlayer.registerTool({
         };
 
     // Return updated values
-    console.log('newValues: ', newValues)
     return newValues;
   },
   values: {},
@@ -316,9 +315,10 @@ unlayer.registerTool({
 });
 
 
-const getProduct = async (title) => {
+
+const getProduct = async (title, userToken) => {
   if (!title) return;
-  const response = await fetch(`http://localhost/s/ecomm/products/search?title=${title}`);
+  const response = await fetch(`http://localhost/s/ecomm/products/search?title=${title}&token=${userToken}`);
   const data = await response.json();
   return showApiResponse(data);
 }
@@ -378,7 +378,7 @@ unlayer.registerPropertyEditor({
           var searchButton = document.querySelector('#search-btn');
           var searchBarValue = document.getElementById('search-bar');
           searchButton.onclick = function (e) {
-            getProduct(searchBarValue.value);
+            getProduct(searchBarValue.value, data.token);
           };
         }, 200);
       };

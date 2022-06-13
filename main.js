@@ -3,6 +3,9 @@ const isProduction = () => {
   return url.includes('127.0.0.1') ? false : true;
 }
 
+let products = [];
+let token = '';
+
 unlayer.init({
   id: "editor",
   projectId: 82737,
@@ -11,13 +14,14 @@ unlayer.init({
   tools: {
     "custom#product_tool": {
       data: {
-        products: [],
+        products
       },
       properties: {
         productLibrary: {
           editor: {
             data: {
-              products: [],
+              products,
+              token,
             },
           },
         },
