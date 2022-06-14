@@ -314,18 +314,7 @@ unlayer.registerTool({
   },
 });
 
-let productList = [
-  {
-    "id": 1231,
-    "title": "Xiaomi Redmi Note 11",
-    "price": 1319,
-    "oldPrice": 0,
-    "description": "Smartphone Xiaomi Redmi Note 11 Dual 128gb 6gb Ram - Graphite Gray/cinza - Global Tela AMOLED Mergulhe em um mundo de maravilhas A tela retroiluminada oferece o que há de mais moderno em brilho, contraste, calibração de cores e resolução",
-    "image": "https://m.media-amazon.com/images/I/51e3KdrHuCL._AC_SX679_.jpg",
-    "freeShipping": true,
-    "url": "https://m.media-amazon.com/images/I/51e3KdrHuCL._AC_SX679_.jpg"
-  },
-];
+let productList = [];
 
 const getProduct = async (title, userToken) => {
 
@@ -356,7 +345,7 @@ const getProduct = async (title, userToken) => {
     const url = `http://localhost/s/ecomm/products/search?title=${removeSpecialCharacters(title)}&token=${userToken}`
     const response = await fetch(url);
     const data = await response.json();
-    showApiResponse(productList, title);
+    showApiResponse(data, title);
   } catch (e) {
     const list = document.querySelector(
       '#product_library_modal .products-list'
