@@ -52,7 +52,7 @@ const productItemsTemplate = _.template(`
 <div class="product-item" id="product-item" data-uuid='<%= item.id %>' data-title="<%= item.title %>" data-price="<%= item.price %>" data-image="<%= item.image %>" data-description="<%= item.description %>" >
 <img src="<%= item.image %>" style="max-height: 300px;min-height: 300px;width: 100%;" />
   <h4 style="margin: 0.5rem 0; text-align: left;"><%= item.title %></h4>
-  <h4 style="margin: 0.5rem 0; text-align: left;">R$ <%= item.price %></h4>
+  <h4 class="product-price" style="margin: 0.5rem 0; text-align: left;">R$ <%= item.price %></h4>
   <p style="text-align: left;"><%= item.description %></p>
 </div>
 <% }); %>
@@ -314,7 +314,18 @@ unlayer.registerTool({
   },
 });
 
-let productList = [];
+let productList = [
+  {
+    "id": 1231,
+    "title": "Xiaomi Redmi Note 11",
+    "price": 1319,
+    "oldPrice": 0,
+    "description": "Smartphone Xiaomi Redmi Note 11 Dual 128gb 6gb Ram - Graphite Gray/cinza - Global Tela AMOLED Mergulhe em um mundo de maravilhas A tela retroiluminada oferece o que há de mais moderno em brilho, contraste, calibração de cores e resolução",
+    "image": "https://m.media-amazon.com/images/I/51e3KdrHuCL._AC_SX679_.jpg",
+    "freeShipping": true,
+    "url": "https://m.media-amazon.com/images/I/51e3KdrHuCL._AC_SX679_.jpg"
+  },
+];
 
 const getProduct = async (title, userToken) => {
 
@@ -332,12 +343,20 @@ const getProduct = async (title, userToken) => {
     return title.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
   }
 
+  const replaceDot = () => {
+    const prices = document.querySelectorAll('.product-price')
+    prices.forEach(price => {
+      const newPrice = price.innerText.replace('.', ',');
+      price.innerText = newPrice;
+    }
+    )
+  }
+
   try {
     const url = `http://localhost/s/ecomm/products/search?title=${removeSpecialCharacters(title)}&token=${userToken}`
     const response = await fetch(url);
     const data = await response.json();
-    productList = data;
-    showApiResponse(data, title);
+    showApiResponse(productList, title);
   } catch (e) {
     const list = document.querySelector(
       '#product_library_modal .products-list'
@@ -347,6 +366,7 @@ const getProduct = async (title, userToken) => {
     node.innerText = `Ops... ocorreu um erro. Tente novamente`;
     list.appendChild(node)
   } finally {
+    replaceDot();
     const searchButton = document.getElementById('search-btn');
     searchButton.innerText = "Pesquisar";
   }
