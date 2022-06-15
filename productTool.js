@@ -317,8 +317,8 @@ const getProduct = async (title, userToken) => {
   }
 
   try {
-    // const url = `http://localhost/s/ecomm/products/search?title=${removeSpecialCharacters(title)}&token=${userToken}`
-    const url = `https://mensagex.com.br/s/ecomm/products/search/pedro?title=${removeSpecialCharacters(title)}`
+    const url = `http://localhost/s/ecomm/products/search?title=${removeSpecialCharacters(title)}&token=${userToken}`
+    // const url = `https://mensagex.com.br/s/ecomm/products/search/pedro?title=${removeSpecialCharacters(title)}`
     const response = await fetch(url);
     const data = await response.json();
     productList = data;
