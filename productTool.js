@@ -1,18 +1,39 @@
 const toolTemplate = function (values, isViewer = false) {
-  return `<div class="product-card">
-  <img src="${values.productImage.url}" />
-  <div class="product-card-body">
-    <h3 class="m-0" style="color: ${values.productTitleColor};">${values.productTitle
+  return `<div style="position: relative; display: -webkit-box; display: -ms-flexbox; display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid #d3d3d3;
+  border-radius: 0.25rem;
+  margin: auto;
+  text-align: center;" class="product-card">
+  <img style="width: 100%; object-fit: contain; border-top-left-radius: 0.25rem; border-top-right-radius: 0.25rem;" src="${values.productImage.url}" />
+  <div style="padding: 0 1rem 1rem; text-align: left;" class="product-card-body">
+    <h3 class="m-0" style="color: ${values.productTitleColor}; margin: 1rem 0 0.7rem 0 !important;">${values.productTitle
     }</h3>
     <div class="description">${values.productDescription}</div>
   </div>
-  <div class="product-footer">
-    <div style="color: ${values.productPriceColor}; background-color: ${values.productPriceBackgroundColor};">
+  <div style="display: flex; border-bottom-left-radius: 0.25rem; border-bottom-right-radius: 0.25rem; border-top: 1px solid rgba(0, 0, 0, 0.125); align-items: center; font-weight: bold;     flex-direction: column;
+  border-top: transparent !important;
+  margin-bottom: 10px;" class="product-footer">
+    <div style="color: ${values.productPriceColor}; background-color: ${values.productPriceBackgroundColor}; font-size: 16px;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    width: auto !important;
+    border-bottom-left-radius: 0.25rem;     width: 100%;
+    border-radius: 5px;" >
       ${promocionalPrice(values.produtctOldPrice)}
       R$ ${values.productPrice.toString().replace('.', ',')}
     </div>
     ${freeShipping(values.productFreeShipping)}
-    <a class="button no-underline" href="${values.productCTAAction.url}" target="${values.productCTAAction.target}" style="background-color: ${values.productCTAColor}; color: ${values.productCTATextColor};">
+    <a style="display: inline-block; font-weight: 400; text-align: center; vertical-align: middle;
+    background-color: transparent; border: 1px solid transparent; border-radius: 0.25rem; padding: 0.75rem; font-size: 1rem;
+    line-height: 1.5; width: 100%; background-color: ${values.productCTAColor}; color: ${values.productCTATextColor}; cursor: pointer; border-radius: 5px; padding: 10px 30px; width: 90% !important;"class="button no-underline" href="${values.productCTAAction.url}" target="${values.productCTAAction.target}">
       ${values.productCTA}
     </a>
   </div>
@@ -60,12 +81,12 @@ const productItemsTemplate = _.template(`
 
 const promocionalPrice = (value) => {
   if (!value) return `<span></span>`;
-  else return `<span class="product-oldprice"> De: R$ ${value} </span>`;
+  else return `<span style= "font-size: 13px; text-decoration: line-through; margin-right: 10px;" class="product-oldprice"> De: R$ ${value} </span>`;
 };
 
 const freeShipping = (value) => {
   if (!value) return `<span class="product-freeShipping"></span>`;
-  else return `<span class="product-freeShipping"> Frete Grátis </span>`;
+  else return `<span style= "color: #14a020; font-size: 15px; min-height: 23px; margin-bottom: 5px;" class="product-freeShipping"> Frete Grátis </span>`;
 }
 
 const editorTemplate = `<button id="addProduct" class="button">Pesquisar Produtos</button>`;
@@ -223,62 +244,6 @@ unlayer.registerTool({
       // As we need custom styling in export as well that's why we put those styles here
       css: function (values) {
         return `      
-        .product-card {
-          position: relative;
-          display: -webkit-box;
-          display: -ms-flexbox;
-          display: flex;
-          -webkit-box-orient: vertical;
-          -webkit-box-direction: normal;
-          -ms-flex-direction: column;
-          flex-direction: column;
-          min-width: 0;
-          word-wrap: break-word;
-          background-color: #fff;
-          background-clip: border-box;
-          border: 1px solid rgba(0,0,0,.125);
-          border-radius: .25rem;
-          margin: auto;
-          text-align: center;
-        }
-
-        .product-card-body {
-          padding: 0 1rem 1rem;
-          text-align: left;
-        }
-
-        .product-card-body h3 {
-          margin: 0.7rem 0;
-        }
-
-        .product-card img {
-          width: 100%;
-          object-fit: contain;
-          border-top-left-radius: 0.25rem;
-          border-top-right-radius: 0.25rem;
-        }
-
-        .product-card .product-footer {
-          display: flex;
-          border-bottom-left-radius: 0.25rem;
-          border-bottom-right-radius: 0.25rem;
-          border-top: 1px solid rgba(0,0,0,.125);
-          align-items: center;
-          font-weight: bold;
-        }
-
-        .product-card .product-footer > div, .product-card .product-footer > .button{
-          width: 50%;
-        }
-
-        .product-card .product-footer > div {
-          border-bottom-left-radius: 0.25rem;
-        }
-
-        .product-card .product-footer > .button {
-          border-bottom-right-radius: 0.25rem;
-        }
-
         .button {
           display: inline-block;
           font-weight: 400;
@@ -342,8 +307,8 @@ const getProduct = async (title, userToken) => {
   }
 
   try {
-    const url = `http://localhost/s/ecomm/products/search?title=${removeSpecialCharacters(title)}&token=${userToken}`
-    // const url = `https://mensagex.com.br/s/ecomm/products/search/pedro?title=${removeSpecialCharacters(title)}`
+    // const url = `http://localhost/s/ecomm/products/search?title=${removeSpecialCharacters(title)}&token=${userToken}`
+    const url = `https://mensagex.com.br/s/ecomm/products/search/pedro?title=${removeSpecialCharacters(title)}`
     const response = await fetch(url);
     const data = await response.json();
     productList = data;
@@ -455,4 +420,4 @@ unlayer.registerPropertyEditor({
       };
     },
   }),
-}); 
+});
