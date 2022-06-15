@@ -12,7 +12,7 @@ const toolTemplate = function (values, isViewer = false) {
   border-radius: 0.25rem;
   margin: auto;
   text-align: center;" class="product-card">
-  <img style="width: 100%; object-fit: contain; border-top-left-radius: 0.25rem; border-top-right-radius: 0.25rem;" src="${values.productImage.url}" />
+  <img style="width: ${values.autoWidth.width}; object-fit: contain; border-top-left-radius: 0.25rem; border-top-right-radius: 0.25rem; margin: 0 auto;" src="${values.productImage.url}" />
   <div style="padding: 0 1rem 1rem; text-align: left;" class="product-card-body">
     <h3 class="m-0" style="color: ${values.productTitleColor}; margin: 1rem 0 0.7rem 0 !important;">${values.productTitle
     }</h3>
@@ -123,6 +123,14 @@ unlayer.registerTool({
               'https://s3.amazonaws.com/unroll-images-production/projects%2F6553%2F1604576441796-339575',
           },
           widget: 'image',
+        },
+        autoWidth: {
+          label: 'Auto Width',
+          defaultValue: {
+            autoWidth: true,
+            width: '100%'
+          },
+          widget: 'auto_width',
         },
         productTitle: {
           label: 'Título do Produto',
@@ -274,7 +282,9 @@ unlayer.registerTool({
         }
         `;
       },
-      js: function (values) { },
+      js: function (values) {
+
+      },
     },
   },
 });
@@ -307,8 +317,8 @@ const getProduct = async (title, userToken) => {
   }
 
   try {
-    const url = `http://localhost/s/ecomm/products/search?title=${removeSpecialCharacters(title)}&token=${userToken}`
-    // const url = `https://mensagex.com.br/s/ecomm/products/search/pedro?title=${removeSpecialCharacters(title)}`
+    // const url = `http://localhost/s/ecomm/products/search?title=${removeSpecialCharacters(title)}&token=${userToken}`
+    const url = `https://mensagex.com.br/s/ecomm/products/search/pedro?title=${removeSpecialCharacters(title)}`
     const response = await fetch(url);
     const data = await response.json();
     productList = data;
@@ -368,6 +378,12 @@ const showApiResponse = (productList, title) => {
   }
 }
 
+const hideAutoWidth = () => {
+  const component = document.querySelector('.blockbuilder-auto-width-widget');
+  component.previousElementSibling.remove()
+  component.remove()
+}
+
 unlayer.registerPropertyEditor({
   name: 'product_library',
   layout: 'bottom',
@@ -376,6 +392,7 @@ unlayer.registerPropertyEditor({
       return editorTemplate;
     },
     mount(node, value, updateValue, data) {
+      hideAutoWidth()
       var addButton = node.querySelector('#addProduct');
       addButton.onclick = function () {
         showModal();
