@@ -33,7 +33,7 @@ const toolTemplate = function (values, isViewer = false) {
     ${freeShipping(values.productFreeShipping)}
     <a style="display: inline-block; font-weight: 400; text-align: center; vertical-align: middle;
     background-color: transparent; border: 1px solid transparent; border-radius: 0.25rem; padding: 0.75rem; font-size: 1rem;
-    line-height: 1.5; width: 100%; background-color: ${values.productCTAColor}; color: ${values.productCTATextColor}; cursor: pointer; border-radius: 5px; padding: 10px 30px; width: 90% !important;"class="button no-underline" href="${values.productCTAAction.url}" target="${values.productCTAAction.target}">
+    line-height: 1.5; width: calc(100% - 40px); background-color: ${values.productCTAColor}; color: ${values.productCTATextColor}; cursor: pointer; border-radius: 5px; padding: 10px 30px; width: 90% !important;"class="button no-underline" href="${values.productCTAAction.url}" target="${values.productCTAAction.target}">
       ${values.productCTA}
     </a>
   </div>
