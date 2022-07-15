@@ -182,13 +182,7 @@
 
 .card {
     position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
+    display: block;
     min-width: 0;
     word-wrap: break-word;
     background-color: #fff;
