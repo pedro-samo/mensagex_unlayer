@@ -1,8 +1,3 @@
-const isProduction = () => {
-  const url = window.location.href;
-  return url.includes('127.0.0.1') ? false : true;
-}
-
 let products = [];
 let token = '';
 
@@ -21,13 +16,18 @@ unlayer.init({
           editor: {
             data: {
               products,
-              token,
+              token
             },
           },
         },
       },
     },
   },
-  customCSS: isProduction() ? 'https://pedro-samo.github.io/productTool.css' : 'http://localhost:5500/productTool.css',
-  customJS: isProduction() ? 'https://pedro-samo.github.io/productTool.js' : 'http://localhost:5500/productTool.js',
+  customCSS: [
+    "https://mensagex.com.br/sistema/jscript/products/productTool.css",
+  ],
+  customJS: [
+    "https://mensagex.com.br/sistema/jscript/products/productTool.js",
+  ],
 });
+
