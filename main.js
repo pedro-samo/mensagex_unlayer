@@ -1,3 +1,6 @@
+let products = [];
+let token = '';
+
 unlayer.init({
   id: "editor",
   projectId: 82737,
