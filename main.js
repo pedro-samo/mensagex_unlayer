@@ -16,6 +16,7 @@ unlayer.init({
           editor: {
             data: {
               products,
+              token
             },
           },
         },
