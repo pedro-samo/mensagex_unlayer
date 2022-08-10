@@ -9,7 +9,7 @@ unlayer.init({
   tools: {
     "custom#product_tool": {
       data: {
-        products,
+        products
       },
       properties: {
         productLibrary: {
@@ -30,3 +30,4 @@ unlayer.init({
     "https://mensagex.com.br/sistema/jscript/products/productTool.js",
   ],
 });
+

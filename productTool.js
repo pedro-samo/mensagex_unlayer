@@ -203,7 +203,6 @@ unlayer.registerTool({
           },
           widget: "link",
         },
-      },
     },
   },
   transformer: (values, source) => {
